@@ -20,7 +20,6 @@ services:
         condition: service_healthy
     networks:
       - test-network
-    tty: true
     environment:
       SELENIUM_URI: http://selenium:4444/wd/hub
       BROWSER: chrome
