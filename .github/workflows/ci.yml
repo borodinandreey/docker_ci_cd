@@ -1,0 +1,17 @@
+name: Selenium Tests
+on:
+  push:
+    branches:
+      - main
+jobs:
+  run-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+      - name: Pull Selenium standalone image
+        run: docker pull selenium/standalone-chrome:latest
+      - name: Run tests via Docker Compose
+        run: |
+          docker compose up --build --abort-on-container-exit --exit-code-from test_docker
+          docker compose down
